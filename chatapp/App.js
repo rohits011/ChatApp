@@ -15,7 +15,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Chats" component={Chats} />
       </Stack.Navigator>
@@ -27,3 +27,20 @@ export default App;
 
 // npm install react-navigation
 // npm start -- --reset-cache
+
+// import { ConvexProvider, ConvexReactClient } from "convex/react";
+// import "react-native-get-random-values";
+// import { CONVEX_URL } from "@env";
+// import Tasks from "./components/Tasks";
+
+// const convex = new ConvexReactClient(CONVEX_URL, {
+//   unsavedChangesWarning: false,
+// });
+
+// export default function App() {
+//   return (
+//     <ConvexProvider client={convex}>
+//       <Tasks />
+//     </ConvexProvider>
+//   );
+// }

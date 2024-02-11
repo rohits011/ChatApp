@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 
-const ChatBlock = ({ chat }) => {
-    const lastChat = chat.chats[chat.chats.length - 1];
-    const lastChatUser = lastChat.from === chat.username ? 'You' : lastChat.from;
-  
+const ChatBlock = ({ chat, navigation }) => {
+  const lastChat = chat.chats[chat.chats.length - 1];
+  const lastChatUser = lastChat.from === chat.username ? 'You' : lastChat.from;
+
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate('Main')}>
-    <View style={styles.chatBlock} >
+    <TouchableOpacity onPress={() => navigation.navigate('Main')}>
+      <View style={styles.chatBlock} >
         <Text style={styles.chatBlockUser}>{chat.username}</Text>
-      <Text style={styles.chatBlockText}>{lastChatUser}: {lastChat.text}</Text>
-    </View>
+        <Text style={styles.chatBlockText}>{lastChatUser}: {lastChat.text}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
 
-const Chats = ({navigation}) => {
-    // this.navigation=navigation;
+const Chats = ({ navigation }) => {
+  // this.navigation=navigation;
   const [blocks, setBlocks] = useState([
     {
       id: 1,
@@ -85,29 +85,29 @@ const Chats = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex:1 ,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    chatBlock: {
-      margin: 10,
-      padding: 10,
-      backgroundColor: 'white',
-      borderRadius: 5,
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-    },
-    chatBlockText: {
-      fontSize: 10,
-      fontWeight: 'light',
-      color: 'black',
-    },
-    chatBlockUser: {
-      fontSize: 15,
-      fontWeight: 'bold',
-      color: 'black',
-    }
-  });
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chatBlock: {
+    margin: 10,
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  chatBlockText: {
+    fontSize: 10,
+    fontWeight: 'light',
+    color: 'black',
+  },
+  chatBlockUser: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'black',
+  }
+});
 
 export default Chats;
