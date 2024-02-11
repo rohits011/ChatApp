@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button } from 'react-native';
 
-const MainScreen = () => {
+const MainScreen = ({navigation}) => {
   const [text, setText] = useState('Hello, world!');
 
   return (
@@ -9,7 +9,7 @@ const MainScreen = () => {
       <Text>{text}</Text>
       <Button
         title="Change Text"
-        onPress={() => setText('New text!')}
+        onPress={() =>  navigation.navigate('Chats')}
       />
     </View>
   );

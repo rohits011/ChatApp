@@ -11,8 +11,9 @@ const LoginScreen = ({ navigation }) => {
     if (username === 'admin' && password === 'admin') {
         navigation.navigate('Main');
     }
+    else
     alert("wrong username or password");
-   
+    
   };
 
   return (
