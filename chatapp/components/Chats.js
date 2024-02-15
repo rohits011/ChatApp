@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { useQuery } from "convex/react";
+import { api } from "../convex/_generated/api";
 
 const ChatBlock = ({ chat, navigation }) => {
   const lastChat = chat.chats[chat.chats.length - 1];
@@ -8,15 +10,27 @@ const ChatBlock = ({ chat, navigation }) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate('Main')}>
       <View style={styles.chatBlock} >
-        <Text style={styles.chatBlockUser}>{chat.username}</Text>
-        <Text style={styles.chatBlockText}>{lastChatUser}: {lastChat.text}</Text>
+        <Image source={require('./../assests/userIcon.jpeg')} style={styles.imageBlock} />
+        <View style={styles.userChat}>
+          <Text style={styles.chatBlockUser}>{chat.username}</Text>
+          <Text style={styles.chatBlockText}>{lastChatUser}: {lastChat.text}</Text>
+        </View>
+
       </View>
+      <View
+        style={{
+          borderBottomColor: 'black',
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          marginHorizontal: 50
+        }}
+      />
     </TouchableOpacity>
+
   );
 };
 
 const Chats = ({ navigation }) => {
-  // this.navigation=navigation;
+  this.navigation = navigation;
   const [blocks, setBlocks] = useState([
     {
       id: 1,
@@ -72,6 +86,11 @@ const Chats = ({ navigation }) => {
       ]
     }
   ]);
+  // const [blocks, setBlocks] = useState([]);
+  // // const tasks = useQuery(api.chats.get);
+  // setBlocks(tasks);
+
+
 
   return (
     <View style={styles.container}>
@@ -87,16 +106,28 @@ const Chats = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
+    // backgroundColor: 'skyblue',
+    // alignItems: 'center',
   },
   chatBlock: {
-    margin: 10,
+    // flexBasis: 'auto',/
+    margin: 5,
+    marginHorizontal: 20,
+    maxWidth: '100%',
     padding: 10,
-    backgroundColor: 'white',
-    borderRadius: 5,
+    // backgroundColor: 'teal',
+    borderRadius: 20,
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+  },
+  userChat: {
+    padding: 5,
+    margin: 5,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
+
   },
   chatBlockText: {
     fontSize: 10,
@@ -107,6 +138,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     color: 'black',
+  },
+  imageBlock: {
+    height: 50,
+    width: 50,
+    borderRadius: 25
   }
 });
 
